@@ -1,14 +1,15 @@
 import chap6code
+from HeadFirstPython.chap6.chap6code import sanitizer
+
 
 class Athlete:
     def __init__(self,a_name,a_DOB=None,a_times=[]):
         self.name = a_name
         self.DOB = a_DOB
-        self.times = a_times
+        self = a_times
     def top3(self):
-        return(sorted(set([chap6code.sanitizer(t) for t in self.times]))[0:3])
-    def add_times(self,time):
-        self.times.extend(time)
+        return(sorted(set([chap6code.sanitizer(t) for t in self]))[0:3])
+
 
 def coach(filename):
     try:
@@ -20,12 +21,15 @@ def coach(filename):
         print("File not found"+str(e))
         return(None)
 
-james = coach('james2.txt')
-print(james.name+"'s fastest times"+str(james.top3()))
 
-newtimes=['1.44','3.22','3.69']
-james = coach('james2.txt')
-james.add_times(newtimes)
-print(james.times)
-print(james.name+"'s fastest times"+str(james.top3()))
+class AthleteList:
+    def __init__(self,a_name,a_dob=none,a_times=[]):
+        list.__init__([])
+        self.name = a_name
+        self.DOB = a_dob
+        self.extend(a_times)
+    def top3(self):
+        return(str(sorted(set([sanitizer(t) for t in self]))[0:3]))
+
+
 
