@@ -5,9 +5,9 @@ users = pd.read_table("C:/Users/tq343/PycharmProjects/"
                       "Quant_finance_practice/data analysis/ml-1m/users.dat",
                       sep='::',engine='python',header=None,names=unames,encoding='ISO-8859-1')
 
+
 rnames=['user_id','movie_id','rating','timestamp']
-ratings = pd.read_table("C:/Users/tq343/PycharmProjects/"
-                      "Quant_finance_practice/data analysis/ml-1m/ratings.dat",
+ratings = pd.read_table("C:/Users/tq343/PycharmProjects/Quant_finance_practice/data analysis/ml-1m/ratings.dat",
                       sep='::',engine='python',header=None,names=rnames,encoding='ISO-8859-1')
 
 mnames=['movie_id','Title','Genre']
