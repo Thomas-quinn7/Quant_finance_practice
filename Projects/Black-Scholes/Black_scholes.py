@@ -11,3 +11,6 @@ print(hist_mist)
 print(MSFT.actions)
 plt.plot(hist_mist)
 plt.show()
+
+major_indices = pd.read_html("https://finance.yahoo.com/markets/world-indices")[0]
+MI=yf.Search("indices")
