@@ -1,6 +1,7 @@
 import blackscholes as bs
 import jax.numpy as jnp
 from jax.scipy.stats import norm as jnorm
+import yfinance as yf
 import jax as grad
 
 def black_scholes(S,K,T,r,sigma,q=0,otype="call"):
@@ -12,4 +13,20 @@ def black_scholes(S,K,T,r,sigma,q=0,otype="call"):
     elif otype == "put":
         put = K*jnp.exp(-r*T)*jnorm.cdf(-d2)-S*jnorm.cdf(-d1)
         return put
+    else:
+        raise ValueError("otype must be 'call' or 'put'")
 
+def stock_data(stock):
+    stock_data = yf.Ticker(stock).history(period="max")
+    S=stock_data["Close"].iloc[-1]
+    return S
+
+def get_riskfree_rate():
+    r_data = yf.Ticker("^IRX")
+    r_df = r_data.history(period="5d")
+    if r_df.empty:
+        raise ValueError("No data returned for ^IRX. Check internet connection or ticker.")
+    else:
+        r = r_df['Close'].iloc[-1] / 100
+        return r
+r=get_riskfree_rate()
