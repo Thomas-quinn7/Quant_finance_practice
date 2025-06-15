@@ -1,0 +1,161 @@
+{
+  "name": "traffic-sources-30-days",
+  "query": {
+    "dimensions": [
+      {
+        "name": "date"
+      }
+    ],
+    "metrics": [
+      {
+        "name": "sessions"
+      }
+    ],
+    "dateRanges": [
+      {
+        "startDate": "30daysAgo",
+        "endDate": "yesterday"
+      }
+    ],
+    "orderBys": [
+      {
+        "dimension": {
+          "dimensionName": "date"
+        },
+        "desc": true
+      }
+    ],
+    "limit": "10000",
+    "property": "properties/251325714"
+  },
+  "meta": {
+    "name": "Top Traffic Sources (30 Days)",
+    "description": "Last 30 days' Traffic Sources, measured by sessions, for all sites. "
+  },
+  "data": [
+    {
+      "date": "2025-05-26",
+      "visits": "174714"
+    },
+    {
+      "date": "2025-05-25",
+      "visits": "135002"
+    },
+    {
+      "date": "2025-05-24",
+      "visits": "131347"
+    },
+    {
+      "date": "2025-05-23",
+      "visits": "184869"
+    },
+    {
+      "date": "2025-05-22",
+      "visits": "208997"
+    },
+    {
+      "date": "2025-05-21",
+      "visits": "213598"
+    },
+    {
+      "date": "2025-05-20",
+      "visits": "224304"
+    },
+    {
+      "date": "2025-05-19",
+      "visits": "230185"
+    },
+    {
+      "date": "2025-05-18",
+      "visits": "142711"
+    },
+    {
+      "date": "2025-05-17",
+      "visits": "128576"
+    },
+    {
+      "date": "2025-05-16",
+      "visits": "190811"
+    },
+    {
+      "date": "2025-05-15",
+      "visits": "217888"
+    },
+    {
+      "date": "2025-05-14",
+      "visits": "227448"
+    },
+    {
+      "date": "2025-05-13",
+      "visits": "230465"
+    },
+    {
+      "date": "2025-05-12",
+      "visits": "262610"
+    },
+    {
+      "date": "2025-05-11",
+      "visits": "153147"
+    },
+    {
+      "date": "2025-05-10",
+      "visits": "143857"
+    },
+    {
+      "date": "2025-05-09",
+      "visits": "215975"
+    },
+    {
+      "date": "2025-05-08",
+      "visits": "254679"
+    },
+    {
+      "date": "2025-05-07",
+      "visits": "284541"
+    },
+    {
+      "date": "2025-05-06",
+      "visits": "297043"
+    },
+    {
+      "date": "2025-05-05",
+      "visits": "329642"
+    },
+    {
+      "date": "2025-05-04",
+      "visits": "267920"
+    },
+    {
+      "date": "2025-05-03",
+      "visits": "450613"
+    },
+    {
+      "date": "2025-05-02",
+      "visits": "252812"
+    },
+    {
+      "date": "2025-05-01",
+      "visits": "261794"
+    },
+    {
+      "date": "2025-04-30",
+      "visits": "251082"
+    },
+    {
+      "date": "2025-04-29",
+      "visits": "265258"
+    },
+    {
+      "date": "2025-04-28",
+      "visits": "279405"
+    },
+    {
+      "date": "2025-04-27",
+      "visits": "172722"
+    }
+  ],
+  "totals": {
+    "visits": 6784015
+  },
+  "taken_at": "2025-05-27T14:03:48.775Z"
+}
