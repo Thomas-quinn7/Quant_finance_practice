@@ -1,5 +1,6 @@
 import blackscholes as bs
 import jax.numpy as jnp
+from jax.experimental.pallas.ops.tpu.splash_attention.splash_attention_mask_info import process_mask
 from jax.scipy.stats import norm as jnorm
 import yfinance as yf
 import jax as grad
@@ -29,4 +30,25 @@ def get_riskfree_rate():
     else:
         r = r_df['Close'].iloc[-1] / 100
         return r
-r=get_riskfree_rate()
+
+
+def diff_function(S,K,T,r,sigma_est,price,q=0,otype="call"):
+    theoretical = black_scholes(S,K,T,r,sigma_est,q)
+    market_value = price
+    return theoretical - market_value
+
+loss_grad = jnp.grad(diff_function,argnums=4)
+
+def implied_volatility(stock,K,T=1,sigma_est,price,q=0,otype="call",E=0.01,iter=40):
+    S=stock_data(stock)
+    r=get_riskfree_rate()
+    Error = 1
+    iterations=0
+    if Error<E:
+        diff = diff_function(S,K,T,r,sigma_est,price,q,otype)
+        Error=abs(diff)
+        iterations=iterations+1
+        if iterations=iter:
+            break
+        else:
+            continue
