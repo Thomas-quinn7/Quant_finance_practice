@@ -34,25 +34,26 @@ def get_riskfree_rate():
 
 def diff_function(S,K,T,r,sigma_est,price,q=0,otype="call"):
     theoretical = black_scholes(S,K,T,r,sigma_est,q)
-    market_value = price
-    return theoretical - market_value
+    return theoretical - price
 
 loss_grad = grad.grad(diff_function,argnums=4)
 
 def implied_volatility(stock,K,sigma_est,price,T=1,q=0,otype="call",E=0.01,iter=40):
     S=stock_data(stock)
     r=get_riskfree_rate()
-    Error = 1
     diff = diff_function(S, K, T, r, sigma_est, price, q, otype)
     iterations=0
+    loss_grad = grad.grad(diff_function, argnums=4)
+    diff_grad = loss_grad(S, K, T, r, sigma_est, price, q, otype)
     while abs(diff) > E and iterations < iter:
-        if diff<E:
+        if diff_grad == 0 or jnp.isnan(diff_grad):
+            print("Gradient is zero or invalid; stopping.")
             break
-    else:
-        iterations += 1
-        diff = diff_function(S, K, T, r, sigma_est, price, q, otype)
-        diff_grad = loss_grad(S,K,T,r,sigma_est,price,q,otype)
-        sigma_est = sigma_est + diff/diff_grad
+        else:
+            iterations += 1
+            diff = diff_function(S, K, T, r, sigma_est, price, q, otype)
+            diff_grad = loss_grad(S,K,T,r,sigma_est,price,q,otype)
+            sigma_est = sigma_est + diff/diff_grad
     return sigma_est
 
 
